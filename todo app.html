@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+body{
+    margin: 0 auto;
+    width: 700px;
+    border: 1px solid blue;
+}
+.main{
+    background: rgba(234, 234, 234, 1);
+    padding: 15px;
+}
+li{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+h1{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#div3{
+    margin-left: 28%;
+}
+#div4{
+    margin: 0 auto;
+    background: rgba(234, 234, 234, 1);
+    padding: 15px;
+
+}
+#btn{
+    padding: 8px;
+    text-align: center;
+    color: black;
+    margin-left: 24%;
+    margin-top: 2%;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    background: #6d9ad3;
+}
+#btn:hover{
+    background: rgb(53, 118, 198);
+    color: black;
+}
+#edit{
+    padding: 5px;
+    color: black;
+    background: #6d9ad3;
+    margin-left: 1%;
+    border-radius: 5px;
+    width: 50px;
+    border: 1px solid lightgray;
+}
+#delete{
+    padding: 5px;
+    color: black;
+    margin-left: 0.5%;
+    border: 1px solid lightgray;
+    background: red;
+    border-radius: 5px;
+    width: 60px;
+}
+#text{
+    padding: 4px;
+    width: 300px;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+</style>
+
+</head>
+<body>
+    
+</body>
+<script>
+var div = document.createElement("div");
+div.setAttribute("class", "main");
+document.body.appendChild(div);
+
+var div2 = document.createElement("div");
+div2.setAttribute("class","main");
+div.appendChild(div2);
+
+var h1 = document.createElement("h1");
+var text = document.createTextNode("TO DO Application");
+h1.appendChild(text);
+h1.setAttribute("id", "h1");
+div2.appendChild(h1);
+
+var div3 = document.createElement("div");
+div3.setAttribute("id", "div3");
+var input = document.createElement("input");
+input.setAttribute("type", "text");
+input.setAttribute("onFocus","inpu()");
+input.setAttribute("size", "30");
+input.setAttribute("id", "text");
+input.setAttribute("placeholder", "Enter your work");
+div3.appendChild(input);
+
+var lineBreak = document.createElement("br");
+div3.appendChild(lineBreak);
+
+var btn = document.createElement("input");
+btn.setAttribute("type", "button");
+btn.setAttribute("onClick","btn1()");
+btn.setAttribute("id", "btn");
+btn.setAttribute("value", "add work");
+div3.appendChild(btn);
+div2.appendChild(div3);
+
+function inpu(){
+    var vl = document.getElementById("text").value;
+    vl.style.border = "1px solid blue";
+}
+
+
+function btn1(){
+    if(document.getElementById("text").value === ""){
+    alert("Please enter your work");
+    }
+
+    else{
+        var div4 = document.createElement("div");
+    div4.setAttribute("id", "div4");
+    div.appendChild(div4);
+
+    var li = document.createElement("li");
+    var get = document.createTextNode(document.getElementById("text").value);
+    li.setAttribute("id", document.getElementById("text").value);
+
+    var btn1 = document.createElement("input");
+    btn1.setAttribute("type", "button");
+    btn1.setAttribute("id", "edit");
+    btn1.setAttribute("value", "edit");
+    btn1.setAttribute("onclick", "edit()");
+
+    var btn2 = document.createElement("input");
+    btn2.setAttribute("type", "button");
+    btn2.setAttribute("id", "delete");
+    btn2.setAttribute("value", "delete");
+    btn2.setAttribute("onclick", "delete()");
+
+    li.appendChild(get);
+    li.appendChild(btn1);
+    li.appendChild(btn2);
+    div4.appendChild(li);
+
+    btn1.addEventListener("click", function(){
+        var li = this.parentNode;
+        var text = prompt("Enter your value", li.id);
+        li.innerHTML = text;
+        if(text === ""){
+            li.remove();
+        }
+        li.appendChild(btn1);
+        li.appendChild(btn2);
+    })
+
+
+
+    btn2.addEventListener("click",function(){
+        btn2.parentNode.remove()
+    }
+    
+    )
+
+
+
+    document.getElementById("text").value = ""
+    }
+    
+    
+}
+
+
+</script>
+    
+</html>
